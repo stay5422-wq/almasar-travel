@@ -19,7 +19,8 @@ export async function GET(request: Request) {
   const permissions = [
     'public_profile',
     'pages_show_list',
-    'pages_read_engagement'
+    'pages_read_engagement',
+    'pages_manage_posts'
   ].join(',');
   
   const facebookAuthUrl = `https://www.facebook.com/v18.0/dialog/oauth?` +
