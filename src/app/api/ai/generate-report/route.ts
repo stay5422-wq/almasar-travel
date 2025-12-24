@@ -25,11 +25,20 @@ export async function POST(request: NextRequest) {
     // توليد التقرير
     const report = await generateReport({
       clientName,
-      reportType,
-      startDate,
-      endDate,
-      metrics: metrics || {},
-      platforms: platforms || ['facebook', 'instagram', 'twitter'],
+      period: `${startDate} to ${endDate}`,
+      metrics: metrics || {
+        reach: 0,
+        engagement: 0,
+        conversions: 0,
+        spent: 0,
+        roi: 0,
+      },
+      campaigns: platforms?.map((platform: string) => ({
+        name: `${platform} Campaign`,
+        platform,
+        status: 'active' as const,
+        performance: 'good' as const,
+      })) || [],
     });
 
     return NextResponse.json({

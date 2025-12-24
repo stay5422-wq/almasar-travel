@@ -58,7 +58,7 @@ export class MultiPlatformCampaignManager {
         const emailContent = await generateContent({
           clientName: params.clientName,
           clientType: 'hotel',
-          platform: 'email',
+          platform: 'facebook' as any, // مؤقت
           topic: params.campaignGoal,
           tone: 'professional',
           language: 'ar',

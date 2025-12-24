@@ -6,35 +6,34 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     
     const {
-      clientName,
+      keyword,
       industry,
       targetAudience,
       competitors,
-      currentKeywords,
+      currentPosition,
     } = body;
 
     // التحقق من المدخلات
-    if (!clientName || !industry) {
+    if (!keyword || !industry) {
       return NextResponse.json(
-        { error: 'Missing required fields: clientName and industry' },
+        { error: 'Missing required fields: keyword and industry' },
         { status: 400 }
       );
     }
 
     // تحليل SEO
     const analysis = await analyzeSEO({
-      clientName,
-      industry,
-      targetAudience,
+      keyword,
+      currentPosition,
       competitors: competitors || [],
-      currentKeywords: currentKeywords || [],
+      targetLocation: 'Saudi Arabia',
     });
 
     return NextResponse.json({
       success: true,
       analysis,
       metadata: {
-        clientName,
+        keyword,
         industry,
         analyzedAt: new Date().toISOString(),
       },

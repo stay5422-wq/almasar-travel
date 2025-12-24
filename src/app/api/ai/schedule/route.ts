@@ -23,11 +23,10 @@ export async function POST(request: NextRequest) {
 
     // اقتراح أفضل وقت للنشر
     const suggestion = await suggestBestTime({
-      clientName,
       platform,
       targetAudience,
-      contentType: contentType || 'general',
-      historicalData: historicalData || [],
+      contentType: (contentType || 'text') as 'text' | 'image' | 'video',
+      timezone: 'Asia/Riyadh',
     });
 
     return NextResponse.json({

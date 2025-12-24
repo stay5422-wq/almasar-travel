@@ -144,7 +144,7 @@ export class LinkedInAPI {
         'Authorization': `Bearer ${this.accessToken}`,
         'Content-Type': 'application/octet-stream',
       },
-      body: imageData,
+      body: imageData as any,
     });
 
     return asset;
